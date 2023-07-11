@@ -29,11 +29,14 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       
+      - name: apt update
+        run:  sudo apt update -y
+      
       - name: Get debootstrap
-        run:  apt-get install -y debootstrap
+        run:  sudo apt-get install -y debootstrap
         
       - name: Generate debootstrap tar
-        run: debootstrap.sh
+        run: sudo debootstrap.sh
 
       - name: Build base image
         run: tar -C base_chroot | docker import base_chroot --tag $IMAGE_NAME --label "runnumber=${GITHUB_RUN_ID}"
