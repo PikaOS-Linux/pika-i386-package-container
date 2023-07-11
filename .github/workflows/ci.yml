@@ -1,4 +1,4 @@
-name: pika package container docker image
+name: pika i386 package container docker image
 
 on:
   push:
@@ -15,7 +15,7 @@ on:
   pull_request:
 
 env:
-  IMAGE_NAME: pika-package-container
+  IMAGE_NAME: pika-i386-package-container
 
 jobs:
   # Push image to GitHub Packages.
@@ -28,9 +28,15 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+      
+      - name: Get debootstrap
+        run:  apt-get -y debootstrap
+        
+      - name: Generate debootstrap tar
+        run: debootstrap.sh
 
-      - name: Build image
-        run: docker build . --file Dockerfile --tag $IMAGE_NAME --label "runnumber=${GITHUB_RUN_ID}"
+      - name: Build base image
+        run: tar -C base_chroot -c . | docker import - base_chroot --tag $IMAGE_NAME --label "runnumber=${GITHUB_RUN_ID}"
 
       - name: Log in to registry
         # This is where you will update the personal access token to GITHUB_TOKEN
