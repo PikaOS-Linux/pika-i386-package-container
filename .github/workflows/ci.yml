@@ -36,7 +36,7 @@ jobs:
         run: debootstrap.sh
 
       - name: Build base image
-        run: tar -C base_chroot -c . | docker import - base_chroot --tag $IMAGE_NAME --label "runnumber=${GITHUB_RUN_ID}"
+        run: tar -C base_chroot | docker import base_chroot --tag $IMAGE_NAME --label "runnumber=${GITHUB_RUN_ID}"
 
       - name: Log in to registry
         # This is where you will update the personal access token to GITHUB_TOKEN
