@@ -38,8 +38,11 @@ jobs:
       - name: Generate debootstrap tar
         run: sudo ./debootstrap.sh
         
-      - name: Build image
-        run: sudo docker build . --file ./base_chroot.tgz --tag $IMAGE_NAME --label "runnumber=${GITHUB_RUN_ID}"
+      - name: Build base image
+        run: sudo docker import ./base_chroot.tgz $IMAGE_NAME
+        
+      - name: Export base image
+        run: sudo docker commit $IMAGE_NAME $IMAGE_NAME:$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
 
       - name: Log in to registry
         # This is where you will update the personal access token to GITHUB_TOKEN
