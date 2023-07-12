@@ -2,6 +2,7 @@
 set -e
 DIST=lunar ARCH=i386 debootstrap --arch=i386 lunar base_chroot || true
 rm -rf base_chroot/debootstrap
+chroot ./base_chroot /bin/bash -c "DEBIAN_FRONTEND=noninteractive apt-get -y remove console-setup-linux"
 chroot ./base_chroot /bin/bash -c "DEBIAN_FRONTEND=noninteractive apt-get -y update"
 chroot ./base_chroot /bin/bash -c "DEBIAN_FRONTEND=noninteractive apt-get -y install software-properties-common sudo git bc gpg gpg-agent wget -y"
 chroot ./base_chroot /bin/bash -c "wget https://ppa.pika-os.com/dists/lunar/pika-sources.deb"
