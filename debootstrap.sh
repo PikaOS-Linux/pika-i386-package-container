@@ -5,7 +5,7 @@ rm -rf base_chroot/debootstrap
 echo 'deb [trusted=yes] https://ppa.pika-os.com/ lunar main' > base_chroot/etc/apt/sources.list.d/pika-apt.list
 chroot ./base_chroot /bin/bash -c "DEBIAN_FRONTEND=noninteractive apt-get -y update"
 chroot ./base_chroot /bin/bash -c "DEBIAN_FRONTEND=noninteractive apt --fix-broken install -y"
-chroot ./base_chroot /bin/bash -c "DEBIAN_FRONTEND=noninteractive apt-get -y install software-properties-common sudo git bc gpg gpg-agent wget -y"
+chroot ./base_chroot /bin/bash -c "DEBIAN_FRONTEND=noninteractive apt-get -y install sudo git bc gpg gpg-agent wget -y"
 chroot ./base_chroot /bin/bash -c "wget https://ppa.pika-os.com/dists/lunar/pika-sources.deb"
 chroot ./base_chroot /bin/bash -c "DEBIAN_FRONTEND=noninteractive apt-get install ./pika-sources.deb --yes --option Acquire::Retries=5 --option Acquire::http::Timeout=100 --option Dpkg::Options::="--force-confnew""
 rm -rf base_chroot/etc/apt/sources.list.d/pika-apt.list
