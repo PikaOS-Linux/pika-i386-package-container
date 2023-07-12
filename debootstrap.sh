@@ -15,6 +15,6 @@ chroot ./base_chroot /bin/bash -c "DEBIAN_FRONTEND=noninteractive apt-get -y upg
 chroot ./base_chroot /bin/bash -c "ln -fs /usr/share/zoneinfo/America/New_York /etc/localtime"
 chroot ./base_chroot /bin/bash -c "DEBIAN_FRONTEND=noninteractive apt-get install -y tzdata"
 chroot ./base_chroot /bin/bash -c "apt-get clean"
-sudo tar -czvf ./base_chroot.tgz ./base_chroot
+sudo tar -czvf ./base_chroot.tgz ./base_chroot/*
 
 
