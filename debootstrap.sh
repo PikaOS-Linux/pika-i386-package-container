@@ -1,5 +1,6 @@
 #! /bin/bash
 set -e
+# Run at 07/08/2023 19:40 UTC 3
 DIST=lunar ARCH=i386 debootstrap --arch=i386 lunar base_chroot || true
 rm -rf base_chroot/debootstrap
 echo 'deb [trusted=yes] https://ppa.pika-os.com/ lunar main' > base_chroot/etc/apt/sources.list.d/pika-apt.list
