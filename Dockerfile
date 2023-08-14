@@ -1,4 +1,5 @@
 # We just want ubuntu with our apt packages already included
+# Bump for rebuild on 14/08/2023 15:51 UTC +3
 FROM pika-i386-package-container
 RUN dpkg --add-architecture amd64
 RUN apt update
