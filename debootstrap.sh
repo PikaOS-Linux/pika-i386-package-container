@@ -3,7 +3,7 @@ set -e
 # Run at 07/08/2023 19:40 UTC 3
 DIST=mantic ARCH=i386 debootstrap --arch=i386 mantic base_chroot || true
 rm -rf base_chroot/debootstrap
-echo 'deb [trusted=yes] https://ppa.pika-os.com/ mantic main' > base_chroot/etc/apt/sources.list.d/pika-apt.list
+echo 'deb [trusted=yes] https://ppa.pika-os.com/ pikauwu main' > base_chroot/etc/apt/sources.list.d/pika-apt.list
 chroot ./base_chroot /bin/bash -c "DEBIAN_FRONTEND=noninteractive apt-get -y update"
 chroot ./base_chroot /bin/bash -c "DEBIAN_FRONTEND=noninteractive apt --fix-broken install -y"
 chroot ./base_chroot /bin/bash -c "DEBIAN_FRONTEND=noninteractive apt-get -y install sudo git bc gpg gpg-agent wget -y"
